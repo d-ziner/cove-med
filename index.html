@@ -1,0 +1,635 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>COVE.MED</title>
+<meta name="description" content="Healthcare marketing for doctors and clinics: ads, content and websites that turn people searching for care into booked appointments.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#F7FAF9">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* One calm page: proof first, then what we do, how it works, questions, book. Soft teal, light only. */
+:root{
+  --bg:#F7FAF9; --surface:#FFFFFF; --mist:#EEF7F5; --tint:#E3F3EF; --foam:#9ED6CB; --sea:#5FB3A8;
+  --teal:#0F6E6B; --teal-deep:#0B5E5B; --ink:#16393A; --muted:#4C6866; --line:#DCE9E6;
+  --display:'Instrument Sans','Helvetica Neue',Arial,sans-serif;
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --gut:max(24px,env(safe-area-inset-left,0px));
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--display);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+a{color:var(--teal)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:8px}
+h1,h2,h3{text-wrap:balance;font-weight:500;letter-spacing:-.02em;margin:0}
+p{margin:0}
+.it{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--teal);letter-spacing:-.01em}
+.wrap{max-width:1400px;margin:0 auto;padding-inline:var(--gut)}
+.band{padding-block:clamp(72px,9vw,120px)}
+.band.white{background:var(--surface)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sea)}
+.h2{font-size:clamp(34px,4.2vw,54px);line-height:1.08}
+.lede{color:var(--muted);font-size:18px;max-width:560px}
+.head{display:flex;flex-direction:column;gap:16px;margin-bottom:clamp(36px,5vw,56px)}
+.head.center{align-items:center;text-align:center}
+.head.center .lede{margin-inline:auto}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--teal);color:#FFFFFF;text-decoration:none;border:1px solid var(--teal);border-radius:999px;padding:17px 30px;font:500 17px/1 var(--display);cursor:pointer;transition:background-color .35s var(--ease),border-color .35s var(--ease),color .35s var(--ease)}
+.btn:hover{background:var(--teal-deep);border-color:var(--teal-deep)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{background:var(--surface);border-color:var(--foam)}
+.btn.small{padding:12px 20px;font-size:15px}
+.btn .arr{display:inline-block;transition:transform .4s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn.ghost:hover .arr{transform:translateY(3px)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(247,250,249,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .4s}
+.nav.scrolled{border-bottom-color:var(--line)}
+.nav .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-block:16px}
+.nav .mark{justify-self:start;display:flex}
+.nav .word{font-size:21px;font-weight:600;letter-spacing:.1em;color:var(--ink);text-decoration:none}
+.nav .word span{color:var(--teal)}
+.nav .links{justify-self:end;display:flex;align-items:center;gap:28px;font-size:15px}
+.nav .links a:not(.btn){color:var(--ink);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;padding-bottom:2px;transition:background-size .4s var(--ease)}
+.nav .links a:not(.btn):hover{background-size:100% 1px}
+
+/* hero */
+.hero{padding-top:clamp(40px,5vw,72px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,4vw,64px);align-items:center;min-height:calc(100svh - 190px)}
+.hero-text{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+.hero h1{font-size:clamp(40px,4.4vw,72px);line-height:1.04;max-width:12ch}
+.hero .sub{font-size:clamp(17px,1.3vw,19px);color:var(--muted);max-width:440px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.w>span{display:inline-block}
+.film{min-width:0}
+.reel{position:relative;width:100%;aspect-ratio:16/9;border-radius:clamp(18px,2.2vw,36px);overflow:hidden;background:var(--tint);box-shadow:0 0 0 1px var(--line),0 30px 80px rgba(15,110,107,.12);transform-origin:50% 0}
+.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.reel .tag{position:absolute;left:20px;top:18px;z-index:2;background:var(--surface);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+.reel .tag i{width:8px;height:8px;border-radius:50%;background:var(--sea);animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{50%{opacity:.3}}
+.sound{position:absolute;right:16px;bottom:16px;z-index:2;display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:10px 16px 10px 12px;background:rgba(255,255,255,.94);color:var(--ink);font:500 14px/1 var(--display);cursor:pointer;box-shadow:0 8px 24px rgba(15,110,107,.14)}
+.sound i{width:26px;height:26px;border-radius:50%;background:var(--teal);display:grid;place-items:center}
+.sound i::after{content:"";margin-left:2px;border-left:8px solid #FFFFFF;border-block:5px solid transparent}
+.lb{border:0;padding:0;background:transparent;width:min(1100px,92vw);max-width:none;overflow:visible}
+.lb::backdrop{background:rgba(22,57,58,.72);backdrop-filter:blur(6px)}
+.lb video{display:block;width:100%;aspect-ratio:16/9;border-radius:20px;background:#0B2A2A}
+.lb-close{position:absolute;right:0;top:-48px;width:38px;height:38px;border:0;border-radius:50%;background:#FFFFFF;color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
+
+/* marquee */
+.marquee{border-block:1px solid var(--line);background:var(--surface);overflow:hidden;padding-block:18px;margin-top:clamp(48px,6vw,80px)}
+.marquee-track{display:flex;width:max-content;animation:marq 40s linear infinite}
+.marquee span{font-family:var(--serif);font-style:italic;font-size:28px;color:var(--ink);padding-inline:28px;display:inline-flex;align-items:center;gap:56px;white-space:nowrap}
+.marquee span::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--sea)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* results */
+.cases{display:flex;flex-direction:column;gap:24px}
+.case{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,56px);align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:32px;padding:clamp(24px,3.5vw,48px)}
+.case:nth-child(even) .shot{order:-1}
+.case .label{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.case h3{font-size:clamp(26px,2.6vw,36px);line-height:1.15;margin:12px 0 12px}
+.case .did{color:var(--muted);max-width:480px}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:26px 0 18px}
+.num{background:var(--surface);border-radius:18px;padding:16px 18px;border:1px solid var(--line)}
+.num b{display:block;font-size:clamp(26px,2.4vw,34px);font-weight:500;color:var(--teal);font-variant-numeric:tabular-nums;line-height:1.15;white-space:nowrap}
+.num span{display:block;font-size:13px;color:var(--muted);line-height:1.35;margin-top:4px}
+.case .note{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+.shot{margin:0;border-radius:24px;background:var(--mist);display:flex;align-items:center;justify-content:center;padding:clamp(16px,2.4vw,32px);min-height:280px}
+.shot img{display:block;max-width:100%;max-height:440px;width:auto;height:auto;border-radius:12px;box-shadow:0 18px 40px rgba(15,110,107,.12);background:#FFFFFF}
+
+/* services */
+.pains{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:6px}
+.pains span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:15px;color:var(--ink)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:32px;padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;transition:border-color .4s var(--ease),transform .5s var(--ease)}
+.svc:hover{border-color:var(--foam);transform:translateY(-4px)}
+.svc .who{font-size:14px;color:var(--teal);margin-top:20px}
+.svc h3{font-size:32px;margin:4px 0 10px}
+.svc>p{color:var(--muted)}
+.svc ul{list-style:none;margin:24px 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.svc li{background:var(--mist);border-radius:14px;padding:13px 18px;display:flex;align-items:center;gap:12px}
+.svc li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--sea)}
+.svc .out{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+.svc .out b{color:var(--teal);font-weight:600}
+.spec{margin-top:28px;text-align:center;color:var(--muted);font-size:15px}
+.spec b{color:var(--ink);font-weight:500}
+
+/* reels */
+.reels-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(32px,4vw,48px)}
+.arrows{display:flex;gap:10px}
+.arrows button{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:border-color .3s,background-color .3s}
+.arrows button:hover{border-color:var(--foam)}
+.arrows button.solid{background:var(--teal);border-color:var(--teal);color:#FFFFFF}
+.reels{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scrollbar-width:none;cursor:grab;scroll-padding-left:max(var(--gut),calc((100vw - 1400px) / 2 + 24px))}
+.reels::-webkit-scrollbar{display:none}
+.reels.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.reels.dragging video{pointer-events:none}
+.reels-track{display:flex;gap:20px;width:max-content;padding-left:max(var(--gut),calc((100vw - 1400px) / 2 + 24px));padding-right:var(--gut)}
+.r{width:clamp(220px,21vw,280px);flex:none;margin:0;scroll-snap-align:start}
+.r .thumb{position:relative;aspect-ratio:9/16;border-radius:24px;overflow:hidden;background:var(--tint);transition:transform .6s var(--ease)}
+.r:hover .thumb{transform:translateY(-6px)}
+.r video{display:block;width:100%;height:100%;object-fit:cover}
+.r .views{position:absolute;left:12px;bottom:12px;background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:500}
+.r .views:empty{display:none}
+.r figcaption{margin-top:12px;font-size:15px;line-height:1.4}
+
+/* how it works */
+.timeline{position:relative}
+.tl-line{position:absolute;left:0;right:0;top:21px;height:2px;background:var(--line);overflow:hidden;border-radius:2px}
+.tl-fill{position:absolute;inset:0;background:var(--sea);transform-origin:0 50%;transform:scaleX(.08)}
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.step .dot{width:44px;height:44px;border-radius:50%;background:var(--surface);border:2px solid var(--line);display:grid;place-items:center;color:var(--muted);transition:all .5s var(--ease)}
+.step.on .dot{background:var(--teal);border-color:var(--teal);color:#FFFFFF}
+.step small{display:block;color:var(--teal);font-size:13px;margin:16px 0 4px}
+.step h3{font-size:21px;margin-bottom:6px}
+.step p{color:var(--muted);font-size:15px}
+.terms{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:clamp(40px,5vw,64px)}
+.term{background:var(--mist);border-radius:20px;padding:20px 22px;display:flex;flex-direction:column;gap:4px}
+.term b{font-weight:500;font-size:17px}
+.term span{color:var(--muted);font-size:14px;line-height:1.45}
+
+/* faq */
+.faq{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:56px}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;font:500 19px/1.4 var(--display);color:var(--ink);background:none;border:0;padding:22px 0;display:flex;justify-content:space-between;gap:24px;text-align:left;cursor:pointer}
+.qa .pm{flex:none;width:26px;height:26px;border-radius:50%;background:var(--tint);position:relative;transition:transform .5s var(--ease)}
+.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:7px;right:7px;top:12px;height:2px;background:var(--teal);border-radius:1px}
+.qa .pm::after{transform:rotate(90deg);transition:transform .5s var(--ease)}
+.qa[data-open] .pm{transform:rotate(180deg)}
+.qa[data-open] .pm::after{transform:rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.qa[data-open] .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{margin:0 0 22px;color:var(--muted);max-width:640px}
+
+/* final call */
+.final{background:var(--tint);border-radius:40px;padding:clamp(48px,7vw,96px) clamp(24px,5vw,72px);text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px;position:relative;overflow:hidden}
+.final .shape{position:absolute;opacity:.55;pointer-events:none}
+.final h2,.final p,.final .btn,.final .gets{position:relative}
+.final p{color:var(--muted);max-width:520px}
+.gets{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:6px}
+.gets span{background:var(--surface);border-radius:999px;padding:9px 16px;font-size:15px}
+.final .fitnote{font-size:14px}
+
+/* footer */
+footer{padding-block:72px 28px}
+.foot{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px}
+.foot b{display:block;font-weight:600;margin-bottom:12px}
+.foot a{display:block;color:var(--muted);text-decoration:none;margin-bottom:8px}
+.foot a.btn{display:inline-flex;color:#FFFFFF}
+.foot a:not(.btn):hover{color:var(--teal)}
+.giant{display:flex;justify-content:center;font-size:clamp(48px,13.5vw,200px);font-weight:600;letter-spacing:.02em;line-height:.9;color:var(--teal);margin:56px 0 36px;overflow:hidden;user-select:none}
+.giant .dim{color:var(--foam)}
+.legal{border-top:1px solid var(--line);padding-top:22px;font-size:13px;color:var(--muted)}
+
+/* floating book button */
+.float-cta{position:fixed;right:max(24px,env(safe-area-inset-right,0px));bottom:max(24px,env(safe-area-inset-bottom,0px));z-index:55;transform:translateY(calc(100% + 60px));transition:transform .7s var(--ease);box-shadow:0 16px 40px rgba(15,110,107,.3)}
+.float-cta.show{transform:none}
+
+/* responsive */
+@media (max-width:900px){
+  .nav .links a:not(.btn){display:none}
+  .nav .word{font-size:18px}
+  .case,.two,.faq,.hero-grid{grid-template-columns:1fr}
+  .hero-grid{min-height:0}
+  .hero h1{max-width:14ch}
+  .case:nth-child(even) .shot{order:0}
+  .steps,.terms{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot{grid-template-columns:1fr 1fr}
+  .reels{scroll-snap-type:x mandatory}
+}
+@media (max-width:600px){
+  .nav .links{display:none}
+  .hero .ctas{flex-direction:column;width:100%}
+  .hero .ctas .btn{width:100%}
+  .reel{border-radius:20px}
+  .reel .tag{left:10px;top:10px;padding:5px 10px;font-size:11px;gap:6px}
+  .sound{right:10px;bottom:10px;padding:6px 12px 6px 6px;font-size:12px;gap:6px}
+  .sound i{width:22px;height:22px}
+  .marquee span{font-size:22px}
+  .nums{grid-template-columns:1fr 1fr}
+  .nums .num:last-child{grid-column:span 2}
+  .shot{min-height:0;padding:12px}
+  .shot img{max-height:380px}
+  .steps,.terms{grid-template-columns:1fr}
+  .tl-line{display:none}
+  .foot{grid-template-columns:1fr}
+  .btn:not(.small){font-size:15.5px;padding:16px 18px;white-space:nowrap}
+  .final{border-radius:28px;padding:44px 16px}
+  .final .btn{width:100%}
+  .lb-close{top:-46px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="top">
+  <div class="wrap">
+    <a href="#top" class="mark" aria-label="COVE.MED home">
+      <svg width="74" height="23" viewBox="0 0 1199 366" aria-hidden="true"><circle class="lg" cx="183" cy="183" r="183" fill="#0F6E6B"/><rect class="lg" x="417" y="0" width="367" height="366" fill="#0F6E6B"/><polygon class="lg" points="836,183 1199,3 1199,366" fill="#0F6E6B"/></svg>
+    </a>
+    <a href="#top" class="word">COVE<span>.MED</span></a>
+    <nav class="links" aria-label="Main">
+      <a href="#results">Results</a>
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://calendly.com/avani-jain/discovery-call-clone" target="_blank" rel="noopener" class="btn small">Book your free call</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow">Healthcare marketing agency</span>
+      <h1 data-split>More booked patients for <span class="it">doctors and clinics.</span></h1>
+      <p class="sub">We run the ads, content and websites that turn people searching for care into appointments on your calendar.</p>
+      <div class="ctas">
+        <a href="https://calendly.com/avani-jain/discovery-call-clone" target="_blank" rel="noopener" class="btn">Book your free consultation call <span class="arr" aria-hidden="true">→</span></a>
+        <a href="#results" class="btn ghost">See our results <span class="arr" aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+    <div class="film">
+      <div class="reel">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="media/cove-med-showreel-poster.jpg" aria-label="COVE.MED showreel, muted preview">
+          <source src="media/cove-med-showreel-hero-1080.mp4" type="video/mp4" media="(min-width: 900px)">
+          <source src="media/cove-med-showreel-hero-720.webm" type="video/webm">
+          <source src="media/cove-med-showreel-hero-720.mp4" type="video/mp4">
+        </video>
+        <span class="tag"><i aria-hidden="true"></i>Showreel · our work</span>
+        <button type="button" class="sound"><i aria-hidden="true"></i>Watch with sound</button>
+      </div>
+    </div>
+    </div>
+    <div class="marquee" aria-label="Marketing and growth for doctors, clinics, hospitals and healthcare brands">
+      <div class="marquee-track">
+        <span>Marketing and growth for doctors, clinics, hospitals and healthcare brands</span><span aria-hidden="true">Marketing and growth for doctors, clinics, hospitals and healthcare brands</span>
+        <span aria-hidden="true">Marketing and growth for doctors, clinics, hospitals and healthcare brands</span><span aria-hidden="true">Marketing and growth for doctors, clinics, hospitals and healthcare brands</span>
+      </div>
+    </div>
+  </section>
+
+  <dialog class="lb" aria-label="COVE.MED showreel">
+    <button type="button" class="lb-close" aria-label="Close video">&times;</button>
+    <video controls playsinline preload="none" poster="media/cove-med-showreel-poster.jpg" src="media/cove-med-showreel.mp4"></video>
+  </dialog>
+
+  <!-- 2. Results -->
+  <section class="band white" id="results">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <span class="eyebrow">Our work</span>
+        <h2 class="h2">What we've done for <span class="it">clinics like yours</span></h2>
+        <p class="lede">Three recent campaigns, straight from the ad dashboards.</p>
+      </div>
+      <div class="cases">
+        <article class="case" data-reveal>
+          <div>
+            <span class="label">Healthcare clinic · Meta lead ads</span>
+            <h3>360 patient enquiries in one month.</h3>
+            <p class="did">Lead-form campaigns built around the treatments the clinic wanted to fill, with every enquiry sent straight to the front desk for a quick call back.</p>
+            <div class="nums">
+              <div class="num"><b data-count="360">360</b><span>enquiries in a month</span></div>
+              <div class="num"><b data-count="18.46" data-prefix="$" data-dec="2">$18.46</b><span>lowest cost per lead</span></div>
+              <div class="num"><b data-count="92">92</b><span>from the top campaign</span></div>
+            </div>
+            <p class="note">July 2026, one month, 6 campaigns. These are enquiries, not booked patients.</p>
+          </div>
+          <figure class="shot"><img src="media/results/meta-leads-a.png" alt="Meta Ads Manager: leads and cost per lead by campaign"></figure>
+        </article>
+        <article class="case" data-reveal>
+          <div>
+            <span class="label">Healthcare brand · Google Ads</span>
+            <h3>2,278 conversions from Google search in one month.</h3>
+            <p class="did">Search campaigns for people already looking for the service, sending them to pages that make the next step obvious.</p>
+            <div class="nums">
+              <div class="num"><b data-count="2278" data-comma="1">2,278</b><span>conversions</span></div>
+              <div class="num"><b data-count="1.06" data-prefix="$" data-dec="2">$1.06</b><span>per conversion, top campaign</span></div>
+              <div class="num"><b data-count="14.18" data-suffix="%" data-dec="2">14.18%</b><span>best click-through rate</span></div>
+            </div>
+            <p class="note">January 2026, one month.</p>
+          </div>
+          <figure class="shot"><img src="media/results/google-ads.png" alt="Google Ads: clicks, click-through rate and conversions by campaign"></figure>
+        </article>
+        <article class="case" data-reveal>
+          <div>
+            <span class="label">Healthcare clinic · Google Business Profile</span>
+            <h3>888 phone calls straight from Google in one month.</h3>
+            <p class="did">A cleaned-up Google profile with the right services, photos and reviews, so people nearby call instead of scrolling on.</p>
+            <div class="nums">
+              <div class="num"><b data-count="888">888</b><span>calls from the profile</span></div>
+              <div class="num"><b data-count="2975" data-comma="1">2,975</b><span>profile interactions</span></div>
+              <div class="num"><b>$0</b><span>ad spend on these calls</span></div>
+            </div>
+            <p class="note">March 2026, one month.</p>
+          </div>
+          <figure class="shot"><img src="media/results/google-calls.png" alt="Google Business Profile: calls made from the profile"></figure>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Services -->
+  <section class="band" id="services">
+    <div class="wrap">
+      <div class="head center" data-reveal>
+        <span class="eyebrow">What we do</span>
+        <h2 class="h2">Two ways we <span class="it">work with you</span></h2>
+        <div class="pains"><span>"We post every week. Nobody books."</span><span>"Our leads never pick up."</span><span>"The website doesn't bring calls."</span></div>
+        <p class="lede">Sound familiar? That's what we fix.</p>
+      </div>
+      <div class="two">
+        <article class="svc" data-reveal>
+          <svg width="38" height="38" viewBox="0 0 312 308" aria-hidden="true"><polygon points="2,0 312,0 157,308" fill="#5FB3A8"/></svg>
+          <div class="who">For doctors</div>
+          <h3>Personal brand</h3>
+          <p>Become the doctor people already know and trust before they walk in.</p>
+          <ul><li>Content plan and scripts</li><li>Shoot direction and reel editing</li><li>Instagram and YouTube management</li><li>Profile, bio and highlights set-up</li></ul>
+          <p class="out">You film for a few hours a month. <b>We handle the rest.</b></p>
+        </article>
+        <article class="svc" data-reveal>
+          <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" fill="#0F6E6B"/></svg>
+          <div class="who">For clinics &amp; hospitals</div>
+          <h3>Growth plan</h3>
+          <p>More enquiries and more booked appointments, month after month.</p>
+          <ul><li>Meta and Google ads</li><li>Website and landing pages</li><li>Local SEO and Google Business Profile</li><li>Lead tracking and a monthly report</li></ul>
+          <p class="out">One clinic: <b>360 enquiries in a month</b> from Meta ads.</p>
+        </article>
+      </div>
+      <p class="spec" data-reveal><b>We work with</b> dental, dermatology, physiotherapy, orthopaedics, aesthetics, diagnostics, wellness brands and hospitals.</p>
+    </div>
+  </section>
+
+  <!-- 4. Content -->
+  <section class="band white" id="content">
+    <div class="wrap reels-head">
+      <div class="head" style="margin:0" data-reveal>
+        <span class="eyebrow">Content</span>
+        <h2 class="h2">Videos we make <span class="it">for doctors</span></h2>
+        <p class="lede">Short, honest reels that answer what patients actually ask. Scripted, shot and edited by us.</p>
+      </div>
+      <div class="arrows">
+        <button type="button" id="rl-prev" aria-label="Scroll videos left"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button type="button" id="rl-next" class="solid" aria-label="Scroll videos right"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="reels">
+      <div class="reels-track">
+        <!-- Put each reel's real view count inside <span class="views"></span>, e.g. 1.2M views. Empty = hidden. -->
+        <figure class="r"><div class="thumb"><video src="media/reels/reel-1.mp4" poster="media/reels/reel-1.jpg" muted loop playsinline preload="metadata" aria-label="5g of creatine, every day"></video><span class="views"></span></div><figcaption>5g of creatine, every day</figcaption></figure>
+        <figure class="r"><div class="thumb"><video src="media/reels/reel-2.mp4" poster="media/reels/reel-2.jpg" muted loop playsinline preload="metadata" aria-label="Watch this before the weekend"></video><span class="views"></span></div><figcaption>Watch this before the weekend</figcaption></figure>
+        <figure class="r"><div class="thumb"><video src="media/reels/reel-3.mp4" poster="media/reels/reel-3.jpg" muted loop playsinline preload="metadata" aria-label="What kills cancer cells?"></video><span class="views"></span></div><figcaption>What kills cancer cells?</figcaption></figure>
+        <figure class="r"><div class="thumb"><video src="media/reels/reel-11.mp4" poster="media/reels/reel-11.jpg" muted loop playsinline preload="metadata" aria-label="Why rest matters"></video><span class="views"></span></div><figcaption>Why rest matters</figcaption></figure>
+        <figure class="r"><div class="thumb"><video src="media/reels/reel-4.mp4" poster="media/reels/reel-4.jpg" muted loop playsinline preload="metadata" aria-label="How we change as we age"></video><span class="views"></span></div><figcaption>How we change as we age</figcaption></figure>
+        <figure class="r"><div class="thumb"><video src="media/reels/reel-6.mp4" poster="media/reels/reel-6.jpg" muted loop playsinline preload="metadata" aria-label="Beer or seltzer?"></video><span class="views"></span></div><figcaption>Beer or seltzer?</figcaption></figure>
+        <figure class="r"><div class="thumb"><video src="media/reels/reel-12.mp4" poster="media/reels/reel-12.jpg" muted loop playsinline preload="metadata" aria-label="Skin and hair, honestly"></video><span class="views"></span></div><figcaption>Skin and hair, honestly</figcaption></figure>
+        <figure class="r"><div class="thumb"><video src="media/reels/reel-8.mp4" poster="media/reels/reel-8.jpg" muted loop playsinline preload="metadata" aria-label="Your morning chai habit"></video><span class="views"></span></div><figcaption>Your morning chai habit</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. How it works -->
+  <section class="band" id="how">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <span class="eyebrow">How it works</span>
+        <h2 class="h2">From first call to <span class="it">first results</span></h2>
+        <p class="lede">The team behind 7+ years of healthcare marketing at Crafted Studios.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-line"><div class="tl-fill"></div></div>
+        <div class="steps">
+          <div class="step on"><div class="dot">1</div><small>Week 1</small><h3>Free call and audit</h3><p>We look at what you have and plan the quickest wins.</p></div>
+          <div class="step"><div class="dot">2</div><small>Weeks 2–3</small><h3>Set-up</h3><p>Tracking, pages, first shoot and first ads.</p></div>
+          <div class="step"><div class="dot">3</div><small>Week 4</small><h3>Go live</h3><p>Ads run and content starts posting.</p></div>
+          <div class="step"><div class="dot">4</div><small>Every month after</small><h3>Report and improve</h3><p>A simple report, and more of what works.</p></div>
+        </div>
+      </div>
+      <div class="terms">
+        <div class="term" data-reveal><b>Your ad accounts</b><span>Stay in your name. You keep full access.</span></div>
+        <div class="term" data-reveal><b>Clear fees</b><span>Our fee is separate from your ad budget.</span></div>
+        <div class="term" data-reveal><b>You own it</b><span>All content and pages we make are yours.</span></div>
+        <div class="term" data-reveal><b>Plain reports</b><span>Enquiries, bookings and cost, every month.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. FAQ -->
+  <section class="band white" id="faq">
+    <div class="wrap faq">
+      <div class="head" style="margin:0" data-reveal>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="h2">Questions <span class="it">we get asked</span></h2>
+        <p class="lede">Anything else? Ask us on your free call.</p>
+      </div>
+      <div id="faq-list"></div>
+    </div>
+  </section>
+
+  <!-- 7. Book -->
+  <section class="band" id="book">
+    <div class="wrap">
+      <div class="final" data-reveal>
+        <svg class="shape" style="left:-60px;top:-60px" width="220" height="220" viewBox="0 0 220 220" aria-hidden="true"><circle cx="110" cy="110" r="110" fill="#FFFFFF"/></svg>
+        <svg class="shape" style="right:-40px;bottom:-50px" width="200" height="200" viewBox="0 0 312 308" aria-hidden="true"><polygon points="2,0 312,0 157,308" fill="#FFFFFF"/></svg>
+        <h2 class="h2">Book your free <span class="it">consultation call</span></h2>
+        <p>We'll look at your current marketing and tell you exactly what we'd change, even if you don't work with us.</p>
+        <div class="gets"><span>30 minutes</span><span>No sales pitch</span><span>A clear 90-day plan</span></div>
+        <a href="https://calendly.com/avani-jain/discovery-call-clone" target="_blank" rel="noopener" class="btn">Book your free consultation call <span class="arr" aria-hidden="true">→</span></a>
+        <p class="fitnote">For clinic growth plans, ad budgets start at $1,500 a month.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <svg width="60" height="18" viewBox="0 0 1199 366" aria-hidden="true"><circle cx="183" cy="183" r="183" fill="#0F6E6B"/><rect x="417" y="0" width="367" height="366" fill="#0F6E6B"/><polygon points="836,183 1199,3 1199,366" fill="#0F6E6B"/></svg>
+        <p style="color:var(--muted);margin:16px 0 20px;max-width:320px">Marketing for doctors, clinics and hospitals. Part of Crafted Studios.</p>
+        <a href="https://calendly.com/avani-jain/discovery-call-clone" target="_blank" rel="noopener" class="btn small">Book your free call</a>
+      </div>
+      <div><b>Services</b><a href="#services">Personal brand for doctors</a><a href="#services">Growth plan for clinics</a></div>
+      <div><b>Explore</b><a href="#results">Results</a><a href="#how">How it works</a><a href="#faq">FAQ</a></div>
+    </div>
+    <div class="giant" aria-hidden="true"><span>COVE</span><span class="dim">.MED</span></div>
+    <div class="legal">
+      <p>Copyright © 2026 COVE, Crafted Studios. This site is not a part of the Facebook website or Facebook Inc. Additionally, this site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://calendly.com/avani-jain/discovery-call-clone" target="_blank" rel="noopener" class="btn float-cta" aria-label="Book a free consultation">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+  Book a free consultation
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(s, r){ return (r || document).querySelector(s); };
+  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* FAQ */
+  var faqs = [
+    ['What does it cost?', "It depends on what you need, so we quote after the free call. Our monthly fee is always separate from your ad budget, which you pay to Meta or Google directly. For clinic growth plans, ad budgets start at $1,500 a month."],
+    ['How soon will we see results?', 'Ads can bring enquiries within the first few weeks. Content and Google search build up over a few months. We tell you what to expect for your clinic on the free call.'],
+    ['How do you measure results?', 'A simple monthly report with enquiries, booked appointments, cost per enquiry and what we will do next. No jargon.'],
+    ['Do you work with my specialty?', 'Most likely. We work with dental, dermatology, physiotherapy, orthopaedics, aesthetics, diagnostics, wellness brands and hospitals, plus individual doctors building a personal brand.'],
+    ['Do your ads follow healthcare advertising rules?', 'Yes. We write ads within Meta and Google health policies, follow AHPRA advertising guidelines for Australian practices, and keep patient information out of ad tracking for US practices.'],
+    ['Do I need to be on camera?', 'Only for a personal brand. We write the scripts, direct the shoot and do all the editing, so it takes a few hours of your time a month.']
+  ];
+  var list = $('#faq-list');
+  faqs.forEach(function(f, i){
+    var d = document.createElement('div'); d.className = 'qa'; if(i === 0) d.setAttribute('data-open', '');
+    var b = document.createElement('button'); b.type = 'button'; b.id = 'faq-q' + i;
+    b.setAttribute('aria-expanded', i === 0 ? 'true' : 'false'); b.setAttribute('aria-controls', 'faq-a' + i);
+    b.appendChild(document.createTextNode(f[0]));
+    var pm = document.createElement('span'); pm.className = 'pm'; pm.setAttribute('aria-hidden', 'true'); b.appendChild(pm);
+    var a = document.createElement('div'); a.className = 'ans'; a.id = 'faq-a' + i; a.setAttribute('role', 'region'); a.setAttribute('aria-labelledby', b.id);
+    var inner = document.createElement('div'); var p = document.createElement('p'); p.textContent = f[1]; inner.appendChild(p); a.appendChild(inner);
+    b.addEventListener('click', function(){
+      var open = d.hasAttribute('data-open');
+      $$('.qa', list).forEach(function(x){ x.removeAttribute('data-open'); x.querySelector('button').setAttribute('aria-expanded', 'false'); });
+      if(!open){ d.setAttribute('data-open', ''); b.setAttribute('aria-expanded', 'true'); }
+      if(window.ScrollTrigger) setTimeout(function(){ ScrollTrigger.refresh(); }, 600);
+    });
+    d.appendChild(b); d.appendChild(a); list.appendChild(d);
+  });
+
+  /* Hero showreel: muted loop; full version with sound in a popup */
+  var vid = $('.hero-video'), lb = $('.lb'), lbv = $('.lb video');
+  function heroPlay(){ if(!reduce){ var p = vid.play(); if(p && p.catch) p.catch(function(){}); } }
+  if(reduce){ vid.removeAttribute('autoplay'); vid.pause(); } else { heroPlay(); vid.addEventListener('canplay', heroPlay, { once: true }); }
+  function openLb(){ vid.pause(); if(lb.showModal) lb.showModal(); else lb.setAttribute('open', ''); lbv.muted = false; var p = lbv.play(); if(p && p.catch) p.catch(function(){}); }
+  $('.sound').addEventListener('click', openLb);
+  $('.lb-close').addEventListener('click', function(){ lb.close ? lb.close() : lb.removeAttribute('open'); });
+  lb.addEventListener('click', function(e){ if(e.target === lb) lb.close(); });
+  lb.addEventListener('close', function(){ lbv.pause(); heroPlay(); });
+
+  /* Videos only play while on screen */
+  if('IntersectionObserver' in window){
+    var vo = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting && !reduce){ var p = e.target.play(); if(p && p.catch) p.catch(function(){}); } else e.target.pause(); });
+    }, { threshold: .25 });
+    vo.observe(vid);
+    $$('.r video').forEach(function(v){ v.muted = true; vo.observe(v); });
+  }
+
+  /* Reels: arrows, swipe, trackpad, mouse drag */
+  var rv = $('.reels');
+  function step(){ var c = $('.r'); return c ? (c.offsetWidth + 20) * 2 : 600; }
+  $('#rl-prev').addEventListener('click', function(){ rv.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }); });
+  $('#rl-next').addEventListener('click', function(){ rv.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' }); });
+  var dx = null, dsl = 0, moved = false;
+  rv.addEventListener('pointerdown', function(e){ if(e.pointerType !== 'mouse' || e.button !== 0) return; dx = e.clientX; dsl = rv.scrollLeft; moved = false; });
+  window.addEventListener('pointermove', function(e){ if(dx === null) return; var d = e.clientX - dx; if(Math.abs(d) > 4){ moved = true; rv.classList.add('dragging'); } if(moved){ rv.scrollLeft = dsl - d; e.preventDefault(); } });
+  window.addEventListener('pointerup', function(){ if(dx === null) return; dx = null; rv.classList.remove('dragging'); });
+  rv.addEventListener('click', function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  rv.addEventListener('dragstart', function(e){ e.preventDefault(); });
+
+  /* In-page links glide to their section */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]'); if(!a) return;
+    var id = a.getAttribute('href'); var target = id === '#top' ? document.body : document.querySelector(id);
+    if(!target) return;
+    e.preventDefault();
+    window.scrollTo({ top: id === '#top' ? 0 : target.getBoundingClientRect().top + window.scrollY - 70, behavior: reduce ? 'auto' : 'smooth' });
+  });
+
+  /* Nav line + floating button */
+  var nav = $('.nav'), cta = $('.float-cta');
+  function onScroll(){
+    var y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 8);
+    var bk = $('#book').getBoundingClientRect(), ft = $('footer').getBoundingClientRect();
+    var overBook = bk.top < innerHeight - 40 && bk.bottom > 80;
+    cta.classList.toggle('show', y > innerHeight * .8 && ft.top > innerHeight - 40 && !overBook);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  if(!window.gsap || reduce) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Headline: words rise in */
+  function split(el){
+    Array.prototype.slice.call(el.childNodes).forEach(function(n){
+      if(n.nodeType === 3){
+        var frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(function(t){
+          if(!t) return;
+          if(/^\s+$/.test(t)){ frag.appendChild(document.createTextNode(t)); return; }
+          var o = document.createElement('span'); o.className = 'w';
+          var s = document.createElement('span'); s.textContent = t; o.appendChild(s); frag.appendChild(o);
+        });
+        n.parentNode.replaceChild(frag, n);
+      } else if(n.nodeType === 1){ split(n); }
+    });
+  }
+  $$('[data-split]').forEach(split);
+  var tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+  tl.from('.lg', { scale: 0, transformOrigin: '50% 50%', duration: .9, stagger: .1, ease: 'back.out(1.6)' })
+    .from('.hero .eyebrow', { y: 16, opacity: 0, duration: .9 }, '-=.6')
+    .from('.hero h1 .w > span', { yPercent: 115, duration: 1.2, stagger: .045 }, '-=.7')
+    .from('.hero .sub, .hero .ctas', { y: 20, opacity: 0, duration: 1, stagger: .1 }, '-=.9')
+    .from('.film', { x: 40, opacity: 0, duration: 1.3 }, '-=1.1');
+  setTimeout(function(){ if(tl.progress() < 1) tl.progress(1); }, 3500);
+
+  /* Showreel opens up as you scroll into it */
+  /* (showreel sits beside the headline now, no scroll zoom) */
+
+  /* Soft reveals (movement only, content never hidden) */
+  $$('[data-reveal]').forEach(function(el){
+    gsap.from(el, { y: 40, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 90%' } });
+  });
+
+  /* Counters */
+  $$('[data-count]').forEach(function(el){
+    var end = parseFloat(el.getAttribute('data-count')), dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+    var pre = el.getAttribute('data-prefix') || '', suf = el.getAttribute('data-suffix') || '', o = { v: 0 };
+    ScrollTrigger.create({ trigger: el, start: 'top 92%', once: true, onEnter: function(){
+      gsap.fromTo(o, { v: 0 }, { v: end, duration: 1.8, ease: 'power3.out', onUpdate: function(){
+        var v = Number(o.v.toFixed(dec));
+        el.textContent = pre + (el.hasAttribute('data-comma') ? v.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) : v.toFixed(dec)) + suf;
+      } });
+    }});
+  });
+
+  /* Timeline */
+  gsap.fromTo('.tl-fill', { scaleX: .08 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: '.timeline', start: 'top 80%', end: 'bottom 50%', scrub: .5 } });
+  $$('.step').forEach(function(s, i){
+    ScrollTrigger.create({ trigger: '.timeline', start: function(){ return 'top+=' + (i * 40) + ' 75%'; }, onEnter: function(){ s.classList.add('on'); }, onLeaveBack: function(){ if(i) s.classList.remove('on'); } });
+  });
+
+  /* Keep scroll positions right when fonts or images load late */
+  var t; function refreshSoon(){ clearTimeout(t); t = setTimeout(function(){ ScrollTrigger.refresh(); }, 150); }
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(refreshSoon);
+  window.addEventListener('load', refreshSoon);
+})();
+</script>
+</body>
+</html>
+
+</body></html>
