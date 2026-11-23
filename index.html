@@ -65,16 +65,65 @@ p{margin:0}
 .nav .links a:not(.btn){color:var(--ink);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;padding-bottom:2px;transition:background-size .4s var(--ease)}
 .nav .links a:not(.btn):hover{background-size:100% 1px}
 
-/* hero */
-.hero{padding-top:clamp(40px,5vw,72px)}
+/* hero: deep teal with a faint grid */
+.hero{position:relative;padding-block:clamp(48px,5vw,80px);background:radial-gradient(120% 90% at 70% 40%,#0F4A47 0%,#0B3634 55%,#092C2B 100%);color:#F2FAF8;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 60% 45%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse at 60% 45%,#000 30%,transparent 80%);pointer-events:none}
+.hero .wrap{position:relative}
+.hero .eyebrow,.eyebrow.light{color:#9ED6CB}
+.hero .eyebrow::before,.eyebrow.light::before{background:#5FD3B8}
+.hero h1{color:#F2FAF8}
+.hero .sub{color:rgba(242,250,248,.72)}
+.hero .it{color:#9ED6CB}
+.hero .btn{background:#FFFFFF;border-color:#FFFFFF;color:var(--teal-deep)}
+.hero .btn:hover{background:#E3F3EF;border-color:#E3F3EF}
+.hero .btn.ghost{background:transparent;color:#F2FAF8;border-color:rgba(255,255,255,.28)}
+.hero .btn.ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.5)}
+/* growth diagram: light frosted card on the deep hero */
+.sys{min-width:0;border-radius:28px;background:rgba(247,252,251,.96);border:1px solid rgba(255,255,255,.7);box-shadow:0 40px 100px rgba(0,0,0,.28);padding:clamp(10px,1.2vw,18px)}
+.sys svg{display:block;width:100%;height:auto;font-family:var(--display)}
+.sys-m,.sys-res-m{display:none!important}
+.t-head{font-size:16px;font-weight:500;fill:#16393A}
+.t-pill{font-size:12px;fill:#0F6E6B}
+.t-cap{font-size:10.5px;letter-spacing:.16em;fill:#4C6866}
+.t-src{font-size:14px;font-weight:500;fill:#16393A}
+.t-sub{font-size:11px;fill:#4C6866}
+.t-slot{font-size:10.5px;fill:#16393A}
+.t-slot.on{fill:#16393A;animation:slotTxt 4.8s infinite}
+.t-book{font-size:11px;font-weight:600;fill:#FFFFFF}
+.t-toast{font-size:11px;font-weight:600;fill:#16393A}
+.t-row{font-size:14px;fill:#16393A}
+.t-row.sm{font-size:13px}
+.t-val{font-size:17px;font-weight:500;fill:#0F6E6B;font-variant-numeric:tabular-nums}
+.t-val.sm{font-size:15px}
+.t-note{font-size:10.5px;fill:#4C6866}
+.t-res{font-size:14px;fill:rgba(255,255,255,.85);transition:opacity .45s}
+.t-resb{font-size:18px;font-weight:600;fill:#FFFFFF}
+.swap{opacity:0}
+/* the booking moment loops every 4.8s: time picked -> tap -> booked */
+.slot-hl{opacity:0;animation:slotOn 4.8s infinite}
+@keyframes slotOn{0%,18%{opacity:0}26%,100%{opacity:1}}
+@keyframes slotTxt{0%,18%{fill:#16393A}26%,100%{fill:#FFFFFF}}
+.tap{transform-box:fill-box;transform-origin:center;opacity:0;animation:tap 4.8s infinite}
+@keyframes tap{0%,40%{opacity:0;transform:scale(.4)}44%{opacity:.55;transform:scale(1)}56%,100%{opacity:0;transform:scale(2.4)}}
+.toast{opacity:0;animation:toast 4.8s infinite}
+@keyframes toast{0%,52%{opacity:0;transform:translateY(-8px)}60%,90%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-8px)}}
+.fill{transform-box:fill-box;transform-origin:0 50%;animation:fillIn 1.6s var(--ease) both}
+@keyframes fillIn{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.shine{opacity:0;animation:shine 3.2s ease-in-out infinite}
+@keyframes shine{0%{opacity:0;transform:translateX(0)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(var(--w))}}
+.sys-res-m{margin:10px 0 0;border-radius:999px;background:#0F6E6B;color:rgba(255,255,255,.85);padding:12px 18px;font-size:14px;text-align:center;transition:opacity .45s}
+.sys-res-m b{color:#FFFFFF;font-size:17px;font-weight:600;margin-right:4px}
+/* showreel band */
+.band.deep{background:#0B3634;color:#F2FAF8}
+.band.deep .it{color:#9ED6CB}
+.band.deep .reel{box-shadow:0 0 0 1px rgba(255,255,255,.12),0 40px 100px rgba(0,0,0,.3)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,4vw,64px);align-items:center;min-height:calc(100svh - 190px)}
 .hero-text{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
 .hero h1{font-size:clamp(40px,4.4vw,72px);line-height:1.04;max-width:12ch}
-.hero .sub{font-size:clamp(17px,1.3vw,19px);color:var(--muted);max-width:440px}
+.hero .sub{font-size:clamp(17px,1.3vw,19px);color:rgba(242,250,248,.75);max-width:440px}
 .hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
 .w>span{display:inline-block}
-.film{min-width:0}
 .reel{position:relative;width:100%;aspect-ratio:16/9;border-radius:clamp(18px,2.2vw,36px);overflow:hidden;background:var(--tint);box-shadow:0 0 0 1px var(--line),0 30px 80px rgba(15,110,107,.12);transform-origin:50% 0}
 .reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .reel .tag{position:absolute;left:20px;top:18px;z-index:2;background:var(--surface);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
@@ -89,7 +138,7 @@ p{margin:0}
 .lb-close{position:absolute;right:0;top:-48px;width:38px;height:38px;border:0;border-radius:50%;background:#FFFFFF;color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
 
 /* marquee */
-.marquee{border-block:1px solid var(--line);background:var(--surface);overflow:hidden;padding-block:18px;margin-top:clamp(48px,6vw,80px)}
+.marquee{border-bottom:1px solid var(--line);background:var(--surface);overflow:hidden;padding-block:18px}
 .marquee-track{display:flex;width:max-content;animation:marq 40s linear infinite}
 .marquee span{font-family:var(--serif);font-style:italic;font-size:28px;color:var(--ink);padding-inline:28px;display:inline-flex;align-items:center;gap:56px;white-space:nowrap}
 .marquee span::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--sea)}
@@ -205,6 +254,10 @@ footer{padding-block:72px 28px}
   .nav .word{font-size:18px}
   .case,.two,.faq,.hero-grid{grid-template-columns:1fr}
   .hero-grid{min-height:0}
+  .sys-d{display:none!important}
+  .sys-m{display:block!important}
+  .sys-res-m{display:block!important}
+  .sys{max-width:440px;width:100%;margin-inline:auto}
   .hero h1{max-width:14ch}
   .case:nth-child(even) .shot{order:0}
   .steps,.terms{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -268,25 +321,20 @@ footer{padding-block:72px 28px}
         <a href="#results" class="btn ghost">See our results <span class="arr" aria-hidden="true">↓</span></a>
       </div>
     </div>
-    <div class="film">
-      <div class="reel">
-        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="media/cove-med-showreel-poster.jpg" aria-label="COVE.MED showreel, muted preview">
-          <source src="media/cove-med-showreel-hero-1080.mp4" type="video/mp4" media="(min-width: 900px)">
-          <source src="media/cove-med-showreel-hero-720.webm" type="video/webm">
-          <source src="media/cove-med-showreel-hero-720.mp4" type="video/mp4">
-        </video>
-        <span class="tag"><i aria-hidden="true"></i>Showreel · our work</span>
-        <button type="button" class="sound"><i aria-hidden="true"></i>Watch with sound</button>
-      </div>
+    <div class="sys">
+      <svg class="sys-d" viewBox="0 0 800 560" role="img" aria-label="Meta ads, Google ads, your Google profile and reels bring people to a booking page on their phone. They become enquiries, booked appointments and new patients."><defs><filter id="gD" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><linearGradient id="shineD" x1="0" x2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/><stop offset=".5" stop-color="#FFFFFF" stop-opacity=".65"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient><linearGradient id="scrD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CBE6E0"/><stop offset="1" stop-color="#9ED6CB"/></linearGradient></defs><g transform="translate(28 28) scale(.042)" fill="#0F6E6B"><circle cx="183" cy="183" r="183"/><rect x="417" y="0" width="367" height="366"/><polygon points="836,183 1199,3 1199,366"/></g><text x="88" y="41" class="t-head">How patients find you</text><rect x="660" y="24" width="112" height="26" rx="13" fill="#EEF7F5"/><text x="716" y="41" class="t-pill" text-anchor="middle">This month</text><rect x="34" y="70" width="168" height="52" rx="16" fill="#FFFFFF" stroke="#DCE9E6"/><g transform="translate(56 96)"><rect x="-7" y="-7" width="14" height="14" fill="#0F6E6B"/></g><text x="74" y="92" class="t-src">Meta ads</text><text x="74" y="108" class="t-sub">Social discovery</text><path id="dp0" d="M118 122 C 118 170, 200 150, 200 190" fill="none" stroke="rgba(15,110,107,.22)" stroke-width="1.4" stroke-dasharray="3 5"/><rect x="216" y="70" width="168" height="52" rx="16" fill="#FFFFFF" stroke="#DCE9E6"/><g transform="translate(238 96)"><rect x="-7" y="-7" width="14" height="14" fill="#0F6E6B"/></g><text x="256" y="92" class="t-src">Google ads</text><text x="256" y="108" class="t-sub">People searching</text><path id="dp1" d="M300 122 C 300 170, 200 150, 200 190" fill="none" stroke="rgba(15,110,107,.22)" stroke-width="1.4" stroke-dasharray="3 5"/><rect x="398" y="70" width="168" height="52" rx="16" fill="#FFFFFF" stroke="#DCE9E6"/><g transform="translate(420 96)"><circle r="7.5" fill="#0F6E6B"/></g><text x="438" y="92" class="t-src">Google profile</text><text x="438" y="108" class="t-sub">Maps and calls</text><path id="dp2" d="M482 122 C 482 170, 200 150, 200 190" fill="none" stroke="rgba(15,110,107,.22)" stroke-width="1.4" stroke-dasharray="3 5"/><rect x="580" y="70" width="168" height="52" rx="16" fill="#FFFFFF" stroke="#DCE9E6"/><g transform="translate(602 96)"><polygon points="-8,-7 8,-7 0,8" fill="#5FB3A8"/></g><text x="620" y="92" class="t-src">Reels</text><text x="620" y="108" class="t-sub">Trust before the visit</text><path id="dp3" d="M664 122 C 664 170, 200 150, 200 190" fill="none" stroke="rgba(15,110,107,.22)" stroke-width="1.4" stroke-dasharray="3 5"/><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="2.6s" begin="-0.00s" repeatCount="indefinite"><mpath href="#dp0"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="2.6s" begin="-0.87s" repeatCount="indefinite"><mpath href="#dp0"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="2.6s" begin="-1.73s" repeatCount="indefinite"><mpath href="#dp0"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="2.9s" begin="-0.00s" repeatCount="indefinite"><mpath href="#dp1"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="2.9s" begin="-0.97s" repeatCount="indefinite"><mpath href="#dp1"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="2.9s" begin="-1.93s" repeatCount="indefinite"><mpath href="#dp1"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="3.2s" begin="-0.00s" repeatCount="indefinite"><mpath href="#dp2"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="3.2s" begin="-1.07s" repeatCount="indefinite"><mpath href="#dp2"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="3.2s" begin="-2.13s" repeatCount="indefinite"><mpath href="#dp2"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="3.5s" begin="-0.00s" repeatCount="indefinite"><mpath href="#dp3"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="3.5s" begin="-1.17s" repeatCount="indefinite"><mpath href="#dp3"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="3.5s" begin="-2.33s" repeatCount="indefinite"><mpath href="#dp3"/></animateMotion></circle><ellipse cx="200" cy="535" rx="90" ry="10" fill="#0F6E6B" opacity=".08"/><rect x="120" y="190" width="160" height="340" rx="22" fill="#FFFFFF" stroke="#CFE3DE" stroke-width="1.5"/><rect x="182" y="200" width="36" height="5" rx="2.5" fill="#DCE9E6"/><rect x="130" y="216" width="140" height="122" rx="12" fill="url(#scrD)"/><g transform="translate(200 277)"><circle r="13" fill="rgba(255,255,255,.85)"/><path d="M-4 -6v12l9-6z" fill="#0F6E6B"/></g><rect x="132" y="350" width="88" height="7" rx="3.5" fill="#16393A" opacity=".75"/><rect x="132" y="363" width="64" height="5" rx="2.5" fill="#16393A" opacity=".25"/><rect x="130.0" y="380" width="42.7" height="24" rx="12" fill="#EEF7F5" stroke="#DCE9E6"/><text x="151.3" y="396" class="t-slot" text-anchor="middle">9:30</text><rect x="178.7" y="380" width="42.7" height="24" rx="12" fill="#EEF7F5" stroke="#DCE9E6"/><rect x="178.7" y="380" width="42.7" height="24" rx="12" fill="#0F6E6B" class="slot-hl"/><text x="200.0" y="396" class="t-slot on" text-anchor="middle">10:30</text><rect x="227.3" y="380" width="42.7" height="24" rx="12" fill="#EEF7F5" stroke="#DCE9E6"/><text x="248.7" y="396" class="t-slot" text-anchor="middle">12:00</text><rect x="130" y="416" width="140" height="30" rx="15" fill="#0F6E6B"/><text x="200" y="435" class="t-book" text-anchor="middle">Book appointment</text><circle cx="228" cy="431" r="10" fill="#FFFFFF" class="tap"/><g class="toast"><rect x="128" y="214" width="144" height="34" rx="12" fill="#FFFFFF" stroke="#CFE3DE"/><circle cx="144" cy="231" r="8" fill="#5FB3A8"/><path d="M140 231 l3 3 5-6" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="157" y="235" class="t-toast">Appointment booked</text></g><path id="dc" d="M282 360 C 320 360, 320 330, 352 330" fill="none" stroke="rgba(15,110,107,.22)" stroke-width="1.4" stroke-dasharray="3 5"/><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="1.8s" begin="-0.00s" repeatCount="indefinite"><mpath href="#dc"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gD)"><animateMotion dur="1.8s" begin="-0.90s" repeatCount="indefinite"><mpath href="#dc"/></animateMotion></circle><text x="352" y="212" class="t-cap">WHAT HAPPENS NEXT</text><text x="352" y="250" class="t-row">Seen your clinic</text><text x="772" y="250" class="t-val" text-anchor="end" id="n-seen">52,400</text><rect x="352" y="262" width="420" height="8" rx="4" fill="#E3F3EF"/><rect x="352" y="262" width="403" height="8" rx="4" fill="#5FB3A8" class="fill" style="animation-delay:0.30s"/><rect x="352" y="262" width="40" height="8" fill="url(#shineD)" class="shine" style="animation-delay:1.50s;--w:403px"/><text x="352" y="310" class="t-row">Enquiries</text><text x="772" y="310" class="t-val" text-anchor="end" id="n-enq">1,860</text><rect x="352" y="322" width="420" height="8" rx="4" fill="#E3F3EF"/><rect x="352" y="322" width="260" height="8" rx="4" fill="#5FB3A8" class="fill" style="animation-delay:0.55s"/><rect x="352" y="322" width="40" height="8" fill="url(#shineD)" class="shine" style="animation-delay:2.10s;--w:260px"/><text x="352" y="370" class="t-row">Booked</text><text x="772" y="370" class="t-val" text-anchor="end" id="n-book">940</text><rect x="352" y="382" width="420" height="8" rx="4" fill="#E3F3EF"/><rect x="352" y="382" width="168" height="8" rx="4" fill="#5FB3A8" class="fill" style="animation-delay:0.80s"/><rect x="352" y="382" width="40" height="8" fill="url(#shineD)" class="shine" style="animation-delay:2.70s;--w:168px"/><text x="352" y="430" class="t-row">New patients</text><text x="772" y="430" class="t-val" text-anchor="end" id="n-pat">812</text><rect x="352" y="442" width="420" height="8" rx="4" fill="#E3F3EF"/><rect x="352" y="442" width="134" height="8" rx="4" fill="#0F6E6B" class="fill" style="animation-delay:1.05s"/><rect x="352" y="442" width="40" height="8" fill="url(#shineD)" class="shine" style="animation-delay:3.30s;--w:134px"/><text x="772" y="472" class="t-note" text-anchor="end">Example month, for illustration</text><g class="res"><rect x="352" y="492" width="420" height="44" rx="22" fill="#0F6E6B"/><text x="376" y="519" class="t-res" id="r-txt"><tspan class="t-resb" id="r-num">360</tspan>  enquiries in one month · Meta lead ads</text></g></svg>
+      <svg class="sys-m" viewBox="0 0 360 700" role="img" aria-label="Ads, Google and reels bring people to a booking page. They become enquiries, bookings and new patients."><defs><filter id="gM" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><linearGradient id="shineM" x1="0" x2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/><stop offset=".5" stop-color="#FFFFFF" stop-opacity=".65"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient><linearGradient id="scrM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CBE6E0"/><stop offset="1" stop-color="#9ED6CB"/></linearGradient></defs><g transform="translate(18 20) scale(.036)" fill="#0F6E6B"><circle cx="183" cy="183" r="183"/><rect x="417" y="0" width="367" height="366"/><polygon points="836,183 1199,3 1199,366"/></g><text x="70" y="31" class="t-head">How patients find you</text><rect x="18" y="52" width="158" height="42" rx="14" fill="#FFFFFF" stroke="#DCE9E6"/><g transform="translate(38 73) scale(.85)"><rect x="-7" y="-7" width="14" height="14" fill="#0F6E6B"/></g><text x="54" y="78" class="t-src">Meta ads</text><path id="mq0" d="M97 94 C 97 132, 180 160, 180 186" fill="none" stroke="rgba(15,110,107,.22)" stroke-width="1.4" stroke-dasharray="3 5"/><rect x="184" y="52" width="158" height="42" rx="14" fill="#FFFFFF" stroke="#DCE9E6"/><g transform="translate(204 73) scale(.85)"><rect x="-7" y="-7" width="14" height="14" fill="#0F6E6B"/></g><text x="220" y="78" class="t-src">Google ads</text><path id="mq1" d="M263 94 C 263 132, 180 160, 180 186" fill="none" stroke="rgba(15,110,107,.22)" stroke-width="1.4" stroke-dasharray="3 5"/><rect x="18" y="102" width="158" height="42" rx="14" fill="#FFFFFF" stroke="#DCE9E6"/><g transform="translate(38 123) scale(.85)"><circle r="7.5" fill="#0F6E6B"/></g><text x="54" y="128" class="t-src">Google profile</text><path id="mq2" d="M97 144 C 97 182, 180 160, 180 186" fill="none" stroke="rgba(15,110,107,.22)" stroke-width="1.4" stroke-dasharray="3 5"/><rect x="184" y="102" width="158" height="42" rx="14" fill="#FFFFFF" stroke="#DCE9E6"/><g transform="translate(204 123) scale(.85)"><polygon points="-8,-7 8,-7 0,8" fill="#5FB3A8"/></g><text x="220" y="128" class="t-src">Reels</text><path id="mq3" d="M263 144 C 263 182, 180 160, 180 186" fill="none" stroke="rgba(15,110,107,.22)" stroke-width="1.4" stroke-dasharray="3 5"/><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.2s" begin="-0.00s" repeatCount="indefinite"><mpath href="#mq0"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.2s" begin="-0.73s" repeatCount="indefinite"><mpath href="#mq0"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.2s" begin="-1.47s" repeatCount="indefinite"><mpath href="#mq0"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.45s" begin="-0.00s" repeatCount="indefinite"><mpath href="#mq1"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.45s" begin="-0.82s" repeatCount="indefinite"><mpath href="#mq1"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.45s" begin="-1.63s" repeatCount="indefinite"><mpath href="#mq1"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.7s" begin="-0.00s" repeatCount="indefinite"><mpath href="#mq2"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.7s" begin="-0.90s" repeatCount="indefinite"><mpath href="#mq2"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.7s" begin="-1.80s" repeatCount="indefinite"><mpath href="#mq2"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.95s" begin="-0.00s" repeatCount="indefinite"><mpath href="#mq3"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.95s" begin="-0.98s" repeatCount="indefinite"><mpath href="#mq3"/></animateMotion></circle><circle r="3" fill="#0F6E6B" filter="url(#gM)"><animateMotion dur="2.95s" begin="-1.97s" repeatCount="indefinite"><mpath href="#mq3"/></animateMotion></circle><rect x="110" y="186" width="140" height="300" rx="22" fill="#FFFFFF" stroke="#CFE3DE" stroke-width="1.5"/><rect x="162" y="196" width="36" height="5" rx="2.5" fill="#DCE9E6"/><rect x="120" y="212" width="120" height="108" rx="12" fill="url(#scrM)"/><g transform="translate(180 266)"><circle r="13" fill="rgba(255,255,255,.85)"/><path d="M-4 -6v12l9-6z" fill="#0F6E6B"/></g><rect x="122" y="332" width="77" height="7" rx="3.5" fill="#16393A" opacity=".75"/><rect x="122" y="345" width="56" height="5" rx="2.5" fill="#16393A" opacity=".25"/><rect x="120.0" y="362" width="36.0" height="24" rx="12" fill="#EEF7F5" stroke="#DCE9E6"/><text x="138.0" y="378" class="t-slot" text-anchor="middle">9:30</text><rect x="162.0" y="362" width="36.0" height="24" rx="12" fill="#EEF7F5" stroke="#DCE9E6"/><rect x="162.0" y="362" width="36.0" height="24" rx="12" fill="#0F6E6B" class="slot-hl"/><text x="180.0" y="378" class="t-slot on" text-anchor="middle">10:30</text><rect x="204.0" y="362" width="36.0" height="24" rx="12" fill="#EEF7F5" stroke="#DCE9E6"/><text x="222.0" y="378" class="t-slot" text-anchor="middle">12:00</text><rect x="120" y="398" width="120" height="30" rx="15" fill="#0F6E6B"/><text x="180" y="417" class="t-book" text-anchor="middle">Book appointment</text><circle cx="205" cy="413" r="10" fill="#FFFFFF" class="tap"/><g class="toast"><rect x="118" y="210" width="124" height="34" rx="12" fill="#FFFFFF" stroke="#CFE3DE"/><circle cx="134" cy="227" r="8" fill="#5FB3A8"/><path d="M130 227 l3 3 5-6" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="147" y="231" class="t-toast">Appointment booked</text></g><text x="18" y="520" class="t-cap">WHAT HAPPENS NEXT</text><text x="18" y="546" class="t-row sm">Seen your clinic</text><text x="342" y="546" class="t-val sm" text-anchor="end" id="m-seen">52,400</text><rect x="18" y="556" width="324" height="8" rx="4" fill="#E3F3EF"/><rect x="18" y="556" width="311" height="8" rx="4" fill="#5FB3A8" class="fill" style="animation-delay:0.30s"/><rect x="18" y="556" width="40" height="8" fill="url(#shineM)" class="shine" style="animation-delay:1.50s;--w:311px"/><text x="18" y="584" class="t-row sm">Enquiries</text><text x="342" y="584" class="t-val sm" text-anchor="end" id="m-enq">1,860</text><rect x="18" y="594" width="324" height="8" rx="4" fill="#E3F3EF"/><rect x="18" y="594" width="201" height="8" rx="4" fill="#5FB3A8" class="fill" style="animation-delay:0.55s"/><rect x="18" y="594" width="40" height="8" fill="url(#shineM)" class="shine" style="animation-delay:2.10s;--w:201px"/><text x="18" y="622" class="t-row sm">Booked</text><text x="342" y="622" class="t-val sm" text-anchor="end" id="m-book">940</text><rect x="18" y="632" width="324" height="8" rx="4" fill="#E3F3EF"/><rect x="18" y="632" width="130" height="8" rx="4" fill="#5FB3A8" class="fill" style="animation-delay:0.80s"/><rect x="18" y="632" width="40" height="8" fill="url(#shineM)" class="shine" style="animation-delay:2.70s;--w:130px"/><text x="18" y="660" class="t-row sm">New patients</text><text x="342" y="660" class="t-val sm" text-anchor="end" id="m-pat">812</text><rect x="18" y="670" width="324" height="8" rx="4" fill="#E3F3EF"/><rect x="18" y="670" width="104" height="8" rx="4" fill="#0F6E6B" class="fill" style="animation-delay:1.05s"/><rect x="18" y="670" width="40" height="8" fill="url(#shineM)" class="shine" style="animation-delay:3.30s;--w:104px"/></svg>
+      <p class="sys-res-m"><b id="mr-num">360</b> <span id="mr-txt">enquiries in one month · Meta lead ads</span></p>
     </div>
     </div>
+  </section>
+
     <div class="marquee" aria-label="Marketing and growth for doctors, clinics, hospitals and healthcare brands">
       <div class="marquee-track">
         <span>Marketing and growth for doctors, clinics, hospitals and healthcare brands</span><span aria-hidden="true">Marketing and growth for doctors, clinics, hospitals and healthcare brands</span>
         <span aria-hidden="true">Marketing and growth for doctors, clinics, hospitals and healthcare brands</span><span aria-hidden="true">Marketing and growth for doctors, clinics, hospitals and healthcare brands</span>
       </div>
     </div>
-  </section>
 
   <dialog class="lb" aria-label="COVE.MED showreel">
     <button type="button" class="lb-close" aria-label="Close video">&times;</button>
@@ -348,7 +396,26 @@ footer{padding-block:72px 28px}
     </div>
   </section>
 
-  <!-- 3. Services -->
+  <!-- 3. Showreel -->
+  <section class="band deep" id="showreel">
+    <div class="wrap">
+      <div class="head center" data-reveal>
+        <span class="eyebrow light">Showreel</span>
+        <h2 class="h2">See our work <span class="it">in motion</span></h2>
+      </div>
+      <div class="reel" data-reveal>
+        <video class="showreel-video" muted loop playsinline preload="metadata" poster="media/cove-med-showreel-poster.jpg" aria-label="COVE.MED showreel, muted preview">
+          <source src="media/cove-med-showreel-hero-1080.mp4" type="video/mp4" media="(min-width: 900px)">
+          <source src="media/cove-med-showreel-hero-720.webm" type="video/webm">
+          <source src="media/cove-med-showreel-hero-720.mp4" type="video/mp4">
+        </video>
+        <span class="tag"><i aria-hidden="true"></i>Showreel · our work</span>
+        <button type="button" class="sound"><i aria-hidden="true"></i>Watch with sound</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Services -->
   <section class="band" id="services">
     <div class="wrap">
       <div class="head center" data-reveal>
@@ -520,9 +587,9 @@ footer{padding-block:72px 28px}
   });
 
   /* Hero showreel: muted loop; full version with sound in a popup */
-  var vid = $('.hero-video'), lb = $('.lb'), lbv = $('.lb video');
+  var vid = $('.showreel-video'), lb = $('.lb'), lbv = $('.lb video');
   function heroPlay(){ if(!reduce){ var p = vid.play(); if(p && p.catch) p.catch(function(){}); } }
-  if(reduce){ vid.removeAttribute('autoplay'); vid.pause(); } else { heroPlay(); vid.addEventListener('canplay', heroPlay, { once: true }); }
+  if(reduce) vid.pause();
   function openLb(){ vid.pause(); if(lb.showModal) lb.showModal(); else lb.setAttribute('open', ''); lbv.muted = false; var p = lbv.play(); if(p && p.catch) p.catch(function(){}); }
   $('.sound').addEventListener('click', openLb);
   $('.lb-close').addEventListener('click', function(){ lb.close ? lb.close() : lb.removeAttribute('open'); });
@@ -559,6 +626,43 @@ footer{padding-block:72px 28px}
     window.scrollTo({ top: id === '#top' ? 0 : target.getBoundingClientRect().top + window.scrollY - 70, behavior: reduce ? 'auto' : 'smooth' });
   });
 
+  /* Growth diagram: numbers tick up while on screen, results card cycles through real results */
+  var sysEl = $('.sys'), sysOn = true;
+  if(reduce){ $$('.sys svg').forEach(function(v){ if(v.pauseAnimations) v.pauseAnimations(); }); }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){ sysOn = en[0].isIntersecting; $$('.sys svg').forEach(function(v){ if(v.pauseAnimations){ if(sysOn && !reduce) v.unpauseAnimations(); else v.pauseAnimations(); } }); }).observe(sysEl);
+  }
+  var counts = { seen: 52400, enq: 1860, book: 940, pat: 812 };
+  function fmt(n){ return n.toLocaleString('en-US'); }
+  function paint(){
+    [['n-seen','m-seen','seen'],['n-enq','m-enq','enq'],['n-book','m-book','book'],['n-pat','m-pat','pat']].forEach(function(r){
+      var a = document.getElementById(r[0]), b = document.getElementById(r[1]);
+      if(a) a.textContent = fmt(counts[r[2]]); if(b) b.textContent = fmt(counts[r[2]]);
+    });
+  }
+  if(!reduce) setInterval(function(){
+    if(!sysOn) return;
+    counts.seen += 9 + Math.floor(Math.random() * 14);
+    if(Math.random() < .55) counts.enq += 1;
+    if(Math.random() < .3) counts.book += 1;
+    if(Math.random() < .25) counts.pat += 1;
+    paint();
+  }, 900);
+  var results = [
+    ['360', 'enquiries in one month · Meta lead ads'],
+    ['2,278', 'conversions from Google search in one month'],
+    ['888', 'calls from a Google profile in one month']
+  ], ri = 0;
+  function showResult(){
+    var r = results[ri], d = $('#r-txt'), m = $('.sys-res-m');
+    [d, m].forEach(function(e){ if(e) e.classList.add('swap'); });
+    setTimeout(function(){
+      if(d){ d.innerHTML = ''; var b = document.createElementNS('http://www.w3.org/2000/svg', 'tspan'); b.setAttribute('class', 't-resb'); b.textContent = r[0]; d.appendChild(b); d.appendChild(document.createTextNode('  ' + r[1])); d.classList.remove('swap'); }
+      if(m){ $('#mr-num').textContent = r[0]; $('#mr-txt').textContent = r[1]; m.classList.remove('swap'); }
+    }, 450);
+  }
+  if(!reduce) setInterval(function(){ if(!sysOn) return; ri = (ri + 1) % results.length; showResult(); }, 4200);
+
   /* Nav line + floating button */
   var nav = $('.nav'), cta = $('.float-cta');
   function onScroll(){
@@ -594,7 +698,7 @@ footer{padding-block:72px 28px}
     .from('.hero .eyebrow', { y: 16, opacity: 0, duration: .9 }, '-=.6')
     .from('.hero h1 .w > span', { yPercent: 115, duration: 1.2, stagger: .045 }, '-=.7')
     .from('.hero .sub, .hero .ctas', { y: 20, opacity: 0, duration: 1, stagger: .1 }, '-=.9')
-    .from('.film', { x: 40, opacity: 0, duration: 1.3 }, '-=1.1');
+    .from('.sys', { y: 40, opacity: 0, duration: 1.3 }, '-=1.1');
   setTimeout(function(){ if(tl.progress() < 1) tl.progress(1); }, 3500);
 
   /* Showreel opens up as you scroll into it */
